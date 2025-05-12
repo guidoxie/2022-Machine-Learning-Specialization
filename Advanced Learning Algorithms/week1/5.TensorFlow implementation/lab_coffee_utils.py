@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('./deeplearning.mplstyle')
 import tensorflow as tf
-from tensorflow.keras.activations import sigmoid
+from keras.activations import sigmoid
 from matplotlib import cm
 import matplotlib.colors as colors
 from lab_utils_common import dlc
@@ -40,6 +40,19 @@ def plt_roast(X,Y):
     ax.plot(tr, (-3/85) * tr + 21, color=dlc["dlpurple"],linewidth=1)
     ax.axhline(y=12,color=dlc["dlpurple"],linewidth=1)
     ax.axvline(x=175,color=dlc["dlpurple"],linewidth=1)
+    ax.set_title(f"Coffee Roasting", size=16)
+    ax.set_xlabel("Temperature \n(Celsius)",size=12)
+    ax.set_ylabel("Duration \n(minutes)",size=12)
+    ax.legend(loc='upper right')
+    plt.show()
+
+def plt_roast2(X,Y):
+    Y = Y.reshape(-1,)
+    colormap = np.array(['r', 'b'])
+    fig, ax = plt.subplots(1,1,)
+    ax.scatter(X[Y==1,0],X[Y==1,1], s=70, marker='x', c='red', label="Good Roast" )
+    ax.scatter(X[Y==0,0],X[Y==0,1], s=100, marker='o', facecolors='none', 
+               edgecolors=dlc["dldarkblue"],linewidth=1,  label="Bad Roast")
     ax.set_title(f"Coffee Roasting", size=16)
     ax.set_xlabel("Temperature \n(Celsius)",size=12)
     ax.set_ylabel("Duration \n(minutes)",size=12)

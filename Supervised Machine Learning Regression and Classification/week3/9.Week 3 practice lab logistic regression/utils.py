@@ -8,7 +8,6 @@ def load_data(filename):
     return X, y
 
 def sig(z):
- 
     return 1/(1+np.exp(-z))
 
 def map_feature(X1, X2):
@@ -37,7 +36,7 @@ def plot_data(X, y, pos_label="y=1", neg_label="y=0"):
 def plot_decision_boundary(w, b, X, y):
     # Credit to dibgerge on Github for this plotting code
      
-    plot_data(X[:, 0:2], y)
+    plot_data(X[:, 0:2], y, pos_label="Admitted", neg_label="Not admitted")
     
     if X.shape[1] <= 2:
         plot_x = np.array([min(X[:, 0]), max(X[:, 0])])

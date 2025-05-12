@@ -175,7 +175,7 @@ class plt_one_addpt_onclick:
         #print(f"xy     : {bcid.rectangles[0].get_xy()}")
         #print(f"bb     : {bcid.rectangles[0].get_bbox()}")
         #print(f"points : {bcid.rectangles[0].get_bbox().get_points()}")  #[[xmin,ymin],[xmax,ymax]]
-
+        '''
         h = bcid.rectangles[0].get_height()
         bcid.rectangles[0].set_height(3*h)
 
@@ -184,3 +184,18 @@ class plt_one_addpt_onclick:
 
         bcid.lines[0][0].set_ydata([ymax,ymin])
         bcid.lines[0][1].set_ydata([ymin,ymax])
+        '''
+
+        if len(bcid.ax.patches) == 0:
+            return  # 避免空列表错误
+        
+        rect = bcid.ax.patches[0]
+        h = rect.get_height()
+        rect.set_height(3 * h)
+        
+        ymax = rect.get_bbox().y1
+        ymin = rect.get_bbox().y0
+        
+        # 调整线条位置
+        for line in bcid.lines:
+            line.set_ydata([ymax, ymin])
