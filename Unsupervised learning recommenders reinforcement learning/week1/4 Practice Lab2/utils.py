@@ -57,3 +57,5 @@ def visualize_fit(X, mu, var):
     plt.ylabel('Throughput (mb/s)')
     # Set the x-axis label
     plt.xlabel('Latency (ms)')
+
+    plt.show()
