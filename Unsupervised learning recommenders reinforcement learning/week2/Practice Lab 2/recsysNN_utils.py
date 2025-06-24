@@ -42,6 +42,16 @@ def load_data():
 
     return(item_train, user_train, y_train, item_features, user_features, item_vecs, movie_dict, user_to_genre)
 
+def split_str(ifeatures, smax):
+    ofeatures = []
+    for s in ifeatures:
+        #if ' ' not in s:  # skip string that already have a space  
+        if False:
+            if len(s) > smax:
+                mid = int(len(s)/2)
+                s = s[:mid] + " " + s[mid:]
+        ofeatures.append(s)
+    return(ofeatures)
 
 def pprint_train(x_train, features,  vs, u_s, maxcount = 5, user=True):
     """ Prints user_train or item_train nicely """
@@ -97,16 +107,6 @@ def pprint_data(y_p, user_train, item_train, printfull=False):
           b = item_train[i, ivs:item_train.shape[1]]
           c = np.multiply(a,b)
           print(c)
-
-def split_str(ifeatures, smax):
-    ofeatures = []
-    for s in ifeatures:
-        if ' ' not in s:  # skip string that already have a space            
-            if len(s) > smax:
-                mid = int(len(s)/2)
-                s = s[:mid] + " " + s[mid:]
-        ofeatures.append(s)
-    return(ofeatures)
     
 def pprint_data_tab(y_p, user_train, item_train, uvs, ivs, user_features, item_features, maxcount = 20, printfull=False):
     flist = [".1f", ".1f", ".0f", ".1f", ".0f", ".0f", ".0f",
