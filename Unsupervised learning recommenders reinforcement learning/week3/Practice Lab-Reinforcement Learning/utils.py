@@ -41,7 +41,7 @@ def check_update_conditions(t, num_steps_upd, memory_buffer):
     
     
 def get_new_eps(epsilon):
-    return max(E_MIN, E_DECAY*epsilon)
+    return max(E_MIN , E_DECAY*epsilon)
 
 
 def get_action(q_values, epsilon=0):
@@ -127,13 +127,15 @@ def embed_mp4(filename):
 def create_video(filename, env, q_network, fps=30):
     with imageio.get_writer(filename, fps=fps) as video:
         done = False
-        state = env.reset()
-        frame = env.render(mode="rgb_array")
+        state, _ = env.reset()
+        state = np.array(state)
+        frame = env.render()
         video.append_data(frame)
         while not done:    
             state = np.expand_dims(state, axis=0)
             q_values = q_network(state)
             action = np.argmax(q_values.numpy()[0])
-            state, _, done, _ = env.step(action)
-            frame = env.render(mode="rgb_array")
+            state, _, terminated, truncated, _ = env.step(action)
+            done = terminated or truncated
+            frame = env.render()
             video.append_data(frame)

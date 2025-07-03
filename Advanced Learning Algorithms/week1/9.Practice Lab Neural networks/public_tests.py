@@ -18,7 +18,7 @@ def test_c1(target):
         assert type(layer) == expected[i][0], \
             f"Wrong type in layer {i}. Expected {expected[i][0]} but got {type(layer)}"
         assert list(layer.output.shape) == expected[i][1], \
-            f"Wrong number of units in layer {i}. Expected {expected[i][1]} but got {layer.output.shape.as_list()}"
+            f"Wrong number of units in layer {i}. Expected {expected[i][1]} but got {layer.output.shape}"
         assert layer.activation == expected[i][2], \
             f"Wrong activation in layer {i}. Expected {expected[i][2]} but got {layer.activation}"
         i = i + 1
