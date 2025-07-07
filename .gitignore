@@ -3,3 +3,5 @@
 .ipynb_checkpoints/
 __pycache__/
 *.mp4
+*.h5
+*.keras
