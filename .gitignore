@@ -6,3 +6,4 @@ __pycache__/
 *.h5
 *.keras
 .trae/documents
+.DS_Store
