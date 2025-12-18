@@ -74,12 +74,15 @@ def plt_intuition(x_train, y_train):
         tmp_w = w_array[i]
         cost[i] = compute_cost(x_train, y_train, tmp_w, tmp_b)
 
+    fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,4))
+    fig.canvas.toolbar_position = 'bottom'
+
     @interact(w=(*w_range,10),continuous_update=False)
     def func( w=150):
         f_wb = np.dot(x_train, w) + tmp_b
 
-        fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,4))
-        fig.canvas.toolbar_position = 'bottom'
+        ax[0].clear()
+        ax[1].clear()
 
         mk_cost_lines(x_train, y_train, w, tmp_b, ax[0])
         plt_house_x(x_train, y_train, f_wb=f_wb, ax=ax[0])
@@ -94,7 +97,7 @@ def plt_intuition(x_train, y_train):
         ax[1].set_xlabel('w')
         ax[1].legend(loc='upper center')
         fig.suptitle(f"Minimize Cost: Current Cost = {cur_cost:0.0f}", fontsize=12)
-        plt.show()
+        fig.canvas.draw()
 
 # this is the 2D cost curve with interactive slider
 def plt_stationary(x_train, y_train):

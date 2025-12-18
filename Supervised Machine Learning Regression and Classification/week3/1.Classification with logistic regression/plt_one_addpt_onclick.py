@@ -197,5 +197,6 @@ class plt_one_addpt_onclick:
         ymin = rect.get_bbox().y0
         
         # 调整线条位置
-        for line in bcid.lines:
-            line.set_ydata([ymax, ymin])
+        for l1, l2 in bcid.lines:
+            l1.set_ydata([ymax, ymin])
+            l2.set_ydata([ymin, ymax])
